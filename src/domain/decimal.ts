@@ -118,3 +118,22 @@ export function relativeChange(from: DecimalString, to: DecimalString): DecimalS
   if (base.eq(0)) return null
   return fromBig(toBig(to).minus(base).div(base.abs()).round(10))
 }
+
+/**
+ * How many whole increments make up `value`: ("84489.56", "0.01") → 8448956.
+ * Throws unless `value` is an exact multiple that fits in a safe integer.
+ */
+export function countIncrements(value: DecimalString, increment: DecimalString): number {
+  const quotient = toBig(value).div(increment)
+  const count = quotient.toNumber()
+  if (!quotient.eq(quotient.round(0, Decimal.roundDown)) || !Number.isSafeInteger(count)) {
+    throw new InvalidValueError(`multiple of ${increment}`, value)
+  }
+  return count
+}
+
+/** The inverse of `countIncrements`: (8448956, "0.01") → "84489.56". */
+export function scaleIncrement(count: number, increment: DecimalString): DecimalString {
+  if (!Number.isSafeInteger(count)) throw new InvalidValueError('increment count', count)
+  return fromBig(toBig(increment).times(count), decimalPlaces(increment))
+}

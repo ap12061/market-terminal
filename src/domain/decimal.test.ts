@@ -3,6 +3,7 @@ import { InvalidValueError } from './brand'
 import {
   addDecimals,
   compareDecimals,
+  countIncrements,
   decimalPlaces,
   isZero,
   multiplyDecimals,
@@ -10,6 +11,7 @@ import {
   relativeChange,
   roundToDecimalPlaces,
   roundToIncrement,
+  scaleIncrement,
   subtractDecimals,
 } from './decimal'
 
@@ -127,5 +129,33 @@ describe('relativeChange', () => {
 
   it('is undefined (null) from zero', () => {
     expect(relativeChange(d('0'), d('5'))).toBeNull()
+  })
+})
+
+describe('countIncrements and scaleIncrement', () => {
+  it.each([
+    ['84489.56', '0.01', 8448956],
+    ['0.18000', '0.00001', 18000],
+    ['84490', '10', 8449],
+    ['0', '0.01', 0],
+    ['-1.5', '0.5', -3],
+  ])('%s is %i increments of %s', (value, increment, count) => {
+    expect(countIncrements(d(value), d(increment))).toBe(count)
+  })
+
+  it('rejects values that are not exact multiples', () => {
+    expect(() => countIncrements(d('84489.565'), d('0.01'))).toThrow(InvalidValueError)
+  })
+
+  it('rejects counts beyond safe integer range', () => {
+    expect(() => countIncrements(d('1'), d('0.00000000000000001'))).toThrow(InvalidValueError)
+    expect(() => scaleIncrement(2 ** 53, d('1'))).toThrow(InvalidValueError)
+    expect(() => scaleIncrement(1.5, d('1'))).toThrow(InvalidValueError)
+  })
+
+  it("scales back with the increment's precision", () => {
+    expect(scaleIncrement(8448956, d('0.01'))).toBe('84489.56')
+    expect(scaleIncrement(18000, d('0.00001'))).toBe('0.18000')
+    expect(scaleIncrement(0, d('0.01'))).toBe('0.00')
   })
 })

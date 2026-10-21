@@ -52,13 +52,17 @@ A pre-commit hook (Husky + lint-staged) lints and formats staged files.
 
 ```
 src/
-  app/        # App shell: providers, routes, layout
-  features/   # Self-contained feature modules (see features/README.md)
-  routes/     # Route-level pages
-  styles/     # Global styles and design tokens
-  mocks/      # MSW handlers shared by tests
-  test/       # Test setup and helpers
-e2e/          # Playwright specs
+  app/          # App shell: providers, routes, layout
+  domain/       # Market types, exact decimal maths and formatting (no React)
+  market-data/  # The MarketDataSource interface and its implementations
+    simulated/  #   Deterministic, seeded market simulator with fault injection
+  features/     # Self-contained feature modules (see features/README.md)
+  shared/       # Small framework-agnostic utilities
+  routes/       # Route-level pages
+  styles/       # Global styles and design tokens
+  mocks/        # MSW handlers shared by tests
+  test/         # Test setup and helpers
+e2e/            # Playwright specs
 ```
 
 ## Engineering decisions

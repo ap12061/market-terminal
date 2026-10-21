@@ -3,6 +3,7 @@ export { currencyMinorUnits, parseCurrencyCode, type CurrencyCode } from './curr
 export {
   addDecimals,
   compareDecimals,
+  countIncrements,
   decimalPlaces,
   isDecimalString,
   isZero,
@@ -11,6 +12,7 @@ export {
   relativeChange,
   roundToDecimalPlaces,
   roundToIncrement,
+  scaleIncrement,
   subtractDecimals,
   type DecimalString,
   type RoundingMode,
