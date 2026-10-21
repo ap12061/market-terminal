@@ -21,3 +21,32 @@ export {
   type SimulatedMarketDataSource,
   type SimulatedSourceOptions,
 } from './simulated/simulatedSource'
+export {
+  createConnectionManager,
+  type ConnectionManager,
+  type ConnectionManagerOptions,
+  type ConnectionState,
+} from './connection/connectionManager'
+export {
+  animationFrameScheduler,
+  createManualScheduler,
+  type FrameScheduler,
+  type ManualScheduler,
+} from './stores/frameScheduler'
+export { createKeyedStore, type KeyedStore } from './stores/keyedStore'
+export {
+  createMarketData,
+  MAX_RECENT_TRADES,
+  type MarketData,
+  type MarketDataOptions,
+} from './marketData'
+export { MarketDataProvider } from './react/MarketDataProvider'
+export {
+  useConnectionState,
+  useMarketData,
+  useMarketSubscription,
+  useRecentTrades,
+  useTicker,
+  useTickerSelector,
+} from './react/hooks'
+export { useStoreSelector, useStoreValue, useStoreVersion } from './react/storeHooks'

@@ -56,6 +56,9 @@ src/
   domain/       # Market types, exact decimal maths and formatting (no React)
   market-data/  # The MarketDataSource interface and its implementations
     simulated/  #   Deterministic, seeded market simulator with fault injection
+    connection/ #   Reconnects, backoff, silence detection, ref-counted subscriptions
+    stores/     #   Frame-batched stores for streaming data
+    react/      #   Provider and hooks (useSyncExternalStore)
   features/     # Self-contained feature modules (see features/README.md)
   shared/       # Small framework-agnostic utilities
   routes/       # Route-level pages
@@ -67,6 +70,10 @@ e2e/            # Playwright specs
 
 ## Engineering decisions
 
+- **No floating-point money.** Prices stay exact decimal strings, arithmetic uses big.js with banker's rounding, and `Intl.NumberFormat` is given strings, so formatting is exact even beyond float precision.
+- **Streaming data lives outside React.** Updates are buffered and committed once per animation frame, and components subscribe per product through `useSyncExternalStore`. Ten ticks in a frame cost one render, and a BTC tick never re-renders the ETH row; render-count tests enforce this.
+- **The connection heals itself.** Reconnects use exponential backoff with full jitter, silent (half-open) connections are detected via heartbeats and replaced, and subscriptions are reference-counted and restored after every reconnect.
+- **A deterministic market simulator** implements the same interface as the live feed, so the app, tests and demos run offline, and failures (drops, sequence gaps, stalls) can be injected on demand.
 - **Strict TypeScript**, including `noUncheckedIndexedAccess`, so index access is never assumed safe.
 - **Tests exercise the real route tree.** `renderRoute()` mounts the app's actual routes in a memory router with an isolated query cache, so tests check behaviour rather than implementation details.
 - **Unmocked network requests fail tests.** MSW runs with `onUnhandledFrame: 'error'`.

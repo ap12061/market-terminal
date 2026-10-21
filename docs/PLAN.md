@@ -135,10 +135,10 @@ interface NewsItem {
 type ConnectionState =
   | { status: 'idle' }
   | { status: 'connecting'; attempt: number }
-  | { status: 'open'; lastMessageAt: number }
+  | { status: 'open' }
   | { status: 'stale'; lastMessageAt: number } // open, but no heartbeat within the threshold
-  | { status: 'reconnecting'; attempt: number; retryAt: number }
-  | { status: 'closed'; reason: string }
+  | { status: 'reconnecting'; attempt: number; retryAt: number; reason: string }
+// No terminal "closed" state: the manager retries indefinitely with capped backoff.
 ```
 
 ## Features
