@@ -1,5 +1,7 @@
 # Market Terminal
 
+[![CI](https://github.com/ap12061/market-terminal/actions/workflows/ci.yml/badge.svg)](https://github.com/ap12061/market-terminal/actions/workflows/ci.yml)
+
 A real-time market data terminal built with React and TypeScript, in the style of a trading-desk front end: live prices, an order book, candlestick charts, FX rates and news.
 
 The focus is production-grade engineering: high-frequency streaming data, exact decimal arithmetic for money, resilient connectivity, accessibility, and a CI pipeline that enforces it all.
