@@ -1,0 +1,13 @@
+.terminal {
+  display: grid;
+  /* minmax(0, …) lets wide content scroll inside its panel instead of widening the page. */
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--space-4);
+  align-items: start;
+}
+
+@media (min-width: 60rem) {
+  .terminal {
+    grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
+  }
+}

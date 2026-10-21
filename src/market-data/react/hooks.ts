@@ -1,3 +1,4 @@
+import { useQuery } from '@tanstack/react-query'
 import { use, useEffect, useSyncExternalStore } from 'react'
 import type { ProductId, Ticker, Trade } from '@/domain'
 import type { ConnectionState } from '../connection/connectionManager'
@@ -47,4 +48,14 @@ export function useRecentTrades(productId: ProductId): readonly Trade[] {
   const { trades } = useMarketData()
   useMarketSubscription(productId, 'trades')
   return useStoreValue(trades, productId) ?? NO_TRADES
+}
+
+/** The feed's tradable instruments. Rarely changes, so it's cached for the session. */
+export function useInstruments() {
+  const marketData = useMarketData()
+  return useQuery({
+    queryKey: ['instruments', marketData.sourceId],
+    queryFn: () => marketData.getInstruments(),
+    staleTime: Infinity,
+  })
 }

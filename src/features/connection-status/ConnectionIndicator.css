@@ -1,0 +1,47 @@
+.connection {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: 0.875rem;
+}
+
+.connection__dot {
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 50%;
+  background: currentcolor;
+}
+
+.connection__label {
+  font-weight: 500;
+}
+
+.connection__detail {
+  color: var(--color-text-muted);
+}
+
+.connection--ok {
+  color: var(--color-up);
+}
+
+.connection--ok .connection__dot {
+  animation: connection-pulse 2s ease-in-out infinite;
+}
+
+.connection--warning {
+  color: var(--color-warning);
+}
+
+.connection--error {
+  color: var(--color-down);
+}
+
+.connection--neutral {
+  color: var(--color-text-muted);
+}
+
+@keyframes connection-pulse {
+  50% {
+    opacity: 0.35;
+  }
+}

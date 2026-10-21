@@ -1,0 +1,25 @@
+.flashing-price {
+  border-radius: 0.25rem;
+  padding-inline: 0.2em;
+  margin-inline: -0.2em;
+}
+
+.flashing-price--up {
+  animation: flash-up 700ms ease-out;
+}
+
+.flashing-price--down {
+  animation: flash-down 700ms ease-out;
+}
+
+@keyframes flash-up {
+  from {
+    background: var(--color-up-flash);
+  }
+}
+
+@keyframes flash-down {
+  from {
+    background: var(--color-down-flash);
+  }
+}

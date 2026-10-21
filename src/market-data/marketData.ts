@@ -12,6 +12,8 @@ export const MAX_RECENT_TRADES = 50
 
 /** Everything the UI needs from the market data layer. */
 export interface MarketData {
+  /** Which feed this is, e.g. "simulated". */
+  readonly sourceId: string
   readonly connection: ConnectionManager
   readonly tickers: KeyedStore<ProductId, Ticker>
   /** Most recent first, bounded to MAX_RECENT_TRADES per product. */
@@ -56,6 +58,7 @@ export function createMarketData({
   })
 
   return {
+    sourceId: source.id,
     connection,
     tickers,
     trades,

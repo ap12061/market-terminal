@@ -1,7 +1,14 @@
 import { describe, expect, it } from 'vitest'
 import { parseCurrencyCode } from './currency'
 import { parseDecimal as d } from './decimal'
-import { formatCompact, formatMoney, formatPercentChange, formatPrice } from './format'
+import {
+  formatCompact,
+  formatMoney,
+  formatPercentChange,
+  formatPrice,
+  formatPriceChange,
+  formatTime,
+} from './format'
 
 // Intl separates currency symbols and amounts with a no-break space in some locales.
 const NBSP = ' '
@@ -68,5 +75,28 @@ describe('formatCompact', () => {
     ['950', '950'],
   ])('formats %s as %s', (value, expected) => {
     expect(formatCompact(d(value), 'en-US')).toBe(expected)
+  })
+})
+
+describe('formatCompact with a currency', () => {
+  it('formats compact money', () => {
+    expect(formatCompact(d('1234567890'), 'en-US', parseCurrencyCode('USD'))).toBe('$1.23B')
+  })
+})
+
+describe('formatPriceChange', () => {
+  it.each([
+    ['12.3', '0.01', '+12.30'],
+    ['-0.004', '0.01', '0.00'],
+    ['-1234.5', '0.5', '-1,234.5'],
+    ['0', '0.01', '0.00'],
+  ])('formats %s at %s as %s', (change, increment, expected) => {
+    expect(formatPriceChange(d(change), d(increment), 'en-US')).toBe(expected)
+  })
+})
+
+describe('formatTime', () => {
+  it('formats a wall-clock time with seconds', () => {
+    expect(formatTime(new Date(2026, 0, 1, 14, 3, 27).getTime(), 'en-GB')).toBe('14:03:27')
   })
 })

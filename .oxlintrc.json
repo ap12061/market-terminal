@@ -23,6 +23,12 @@
       {
         "allow": ["**/*.css", "@testing-library/jest-dom/vitest"]
       }
+    ],
+    "jsx-a11y/control-has-associated-label": [
+      "error",
+      {
+        "depth": 4
+      }
     ]
   },
   "ignorePatterns": ["dist", "coverage", "playwright-report", "test-results"]

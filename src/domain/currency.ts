@@ -5,10 +5,14 @@ export type CurrencyCode = Brand<string, 'CurrencyCode'>
 
 let supportedCurrencies: ReadonlySet<string> | undefined
 
-export function parseCurrencyCode(value: string): CurrencyCode {
+export function isCurrencyCode(value: string): value is CurrencyCode {
   supportedCurrencies ??= new Set(Intl.supportedValuesOf('currency'))
-  if (!supportedCurrencies.has(value)) throw new InvalidValueError('currency code', value)
-  return value as CurrencyCode
+  return supportedCurrencies.has(value)
+}
+
+export function parseCurrencyCode(value: string): CurrencyCode {
+  if (!isCurrencyCode(value)) throw new InvalidValueError('currency code', value)
+  return value
 }
 
 /** Digits in the currency's minor unit: USD → 2, JPY → 0, BHD → 3. */

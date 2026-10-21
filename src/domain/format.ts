@@ -40,6 +40,19 @@ export function formatPrice(
   )
 }
 
+/** Formats a price difference with an explicit sign: ("12.3", "0.01") → "+12.30". */
+export function formatPriceChange(
+  change: DecimalString,
+  increment: DecimalString,
+  locale?: string,
+): string {
+  const rounded = roundToIncrement(change, increment)
+  return getFormatter(locale, {
+    signDisplay: 'exceptZero',
+    ...fixedDigits(decimalPlaces(increment)),
+  }).format(asNumericLiteral(rounded))
+}
+
 /** Formats an amount in a currency, rounded to its minor units (JPY has none). */
 export function formatMoney(
   amount: DecimalString,
@@ -64,9 +77,31 @@ export function formatPercentChange(fraction: DecimalString, locale?: string, di
   }).format(asNumericLiteral(rounded))
 }
 
-/** Approximate, human-scale formatting for volumes: "7417.71" → "7.42K". */
-export function formatCompact(value: DecimalString, locale?: string): string {
-  return getFormatter(locale, { notation: 'compact', maximumFractionDigits: 2 }).format(
-    asNumericLiteral(value),
-  )
+/**
+ * Approximate, human-scale formatting for volumes: "7417.71" → "7.42K",
+ * or "$7.42K" with a currency.
+ */
+export function formatCompact(
+  value: DecimalString,
+  locale?: string,
+  currency?: CurrencyCode,
+): string {
+  return getFormatter(locale, {
+    notation: 'compact',
+    maximumFractionDigits: 2,
+    ...(currency && { style: 'currency', currency }),
+  }).format(asNumericLiteral(value))
+}
+
+const timeFormatters = new Map<string, Intl.DateTimeFormat>()
+
+/** Local wall-clock time with seconds, e.g. "14:03:27". */
+export function formatTime(time: number, locale?: string): string {
+  const key = locale ?? ''
+  let formatter = timeFormatters.get(key)
+  if (!formatter) {
+    formatter = new Intl.DateTimeFormat(locale, { timeStyle: 'medium' })
+    timeFormatters.set(key, formatter)
+  }
+  return formatter.format(time)
 }

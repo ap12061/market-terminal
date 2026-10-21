@@ -1,5 +1,10 @@
 export { InvalidValueError, type Brand } from './brand'
-export { currencyMinorUnits, parseCurrencyCode, type CurrencyCode } from './currency'
+export {
+  currencyMinorUnits,
+  isCurrencyCode,
+  parseCurrencyCode,
+  type CurrencyCode,
+} from './currency'
 export {
   addDecimals,
   compareDecimals,
@@ -17,6 +22,13 @@ export {
   type DecimalString,
   type RoundingMode,
 } from './decimal'
-export { formatCompact, formatMoney, formatPercentChange, formatPrice } from './format'
+export {
+  formatCompact,
+  formatMoney,
+  formatPercentChange,
+  formatPrice,
+  formatPriceChange,
+  formatTime,
+} from './format'
 export { parseProductId, splitProductId, type ProductId } from './instrument'
 export type * from './types'

@@ -43,6 +43,7 @@ export {
 export { MarketDataProvider } from './react/MarketDataProvider'
 export {
   useConnectionState,
+  useInstruments,
   useMarketData,
   useMarketSubscription,
   useRecentTrades,

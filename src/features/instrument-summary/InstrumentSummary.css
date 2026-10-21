@@ -1,0 +1,55 @@
+.summary {
+  padding: var(--space-4);
+}
+
+.summary__title {
+  margin: 0;
+  font-size: 1.25rem;
+}
+
+.summary__quote {
+  font-weight: 400;
+  color: var(--color-text-muted);
+}
+
+.summary__price {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--space-3);
+  margin: var(--space-2) 0 var(--space-4);
+}
+
+.summary__last {
+  font-size: 2rem;
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+.summary__change--up {
+  color: var(--color-up);
+}
+
+.summary__change--down {
+  color: var(--color-down);
+}
+
+.summary__stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(9rem, 1fr));
+  gap: var(--space-3) var(--space-4);
+  margin: 0;
+}
+
+.summary__stat dt {
+  font-size: 0.75rem;
+  color: var(--color-text-muted);
+}
+
+.summary__stat dd {
+  margin: 0;
+}
+
+.summary__waiting {
+  color: var(--color-text-muted);
+}

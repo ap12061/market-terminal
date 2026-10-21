@@ -1,0 +1,126 @@
+.watchlist__header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  padding: var(--space-3) var(--space-4);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.watchlist__title {
+  margin: 0;
+  font-size: 1rem;
+}
+
+.watchlist__paused {
+  font-size: 0.75rem;
+  color: var(--color-text-muted);
+}
+
+.watchlist__scroller {
+  overflow-x: auto;
+}
+
+.watchlist__table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9375rem;
+}
+
+.watchlist__table th,
+.watchlist__table td {
+  padding: var(--space-2) var(--space-4);
+  text-align: left;
+  white-space: nowrap;
+}
+
+.watchlist__table thead th {
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--color-text-muted);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.watchlist__table .watchlist__numeric {
+  text-align: right;
+}
+
+.watchlist__sort {
+  display: inline-flex;
+  gap: var(--space-1);
+  padding: 0;
+  border: 0;
+  background: none;
+  font-weight: inherit;
+  cursor: pointer;
+}
+
+.watchlist__sort-icon {
+  opacity: 0.6;
+}
+
+.watchlist__row {
+  /* Anchors the stretched select button, so the whole row is clickable. */
+  position: relative;
+}
+
+.watchlist__row + .watchlist__row {
+  border-top: 1px solid var(--color-border);
+}
+
+.watchlist__row:hover {
+  background: var(--color-surface-raised);
+}
+
+.watchlist__row--selected {
+  background: var(--color-surface-raised);
+  box-shadow: inset 3px 0 0 var(--color-accent);
+}
+
+.watchlist__select {
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+}
+
+.watchlist__select::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+}
+
+.watchlist__select:focus-visible {
+  outline: none;
+}
+
+.watchlist__select:focus-visible::after {
+  outline: 2px solid var(--color-accent);
+  outline-offset: -2px;
+}
+
+.watchlist__base {
+  font-weight: 600;
+}
+
+.watchlist__quote {
+  color: var(--color-text-muted);
+}
+
+.watchlist__change--up {
+  color: var(--color-up);
+}
+
+.watchlist__change--down {
+  color: var(--color-down);
+}
+
+@media (max-width: 30rem) {
+  .watchlist__table th,
+  .watchlist__table td {
+    padding-inline: var(--space-3);
+  }
+
+  .watchlist__optional {
+    display: none;
+  }
+}

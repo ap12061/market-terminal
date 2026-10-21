@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
 import { InvalidValueError } from './brand'
-import { currencyMinorUnits, parseCurrencyCode } from './currency'
+import { currencyMinorUnits, isCurrencyCode, parseCurrencyCode } from './currency'
 
 describe('parseCurrencyCode', () => {
   it.each(['USD', 'EUR', 'GBP', 'JPY'])('accepts %s', (code) => {
@@ -19,5 +19,12 @@ describe('currencyMinorUnits', () => {
     ['BHD', 3],
   ])('%s has %i minor-unit digits', (code, expected) => {
     expect(currencyMinorUnits(parseCurrencyCode(code))).toBe(expected)
+  })
+})
+
+describe('isCurrencyCode', () => {
+  it('distinguishes ISO currencies from crypto tickers', () => {
+    expect(isCurrencyCode('USD')).toBe(true)
+    expect(isCurrencyCode('USDC')).toBe(false)
   })
 })

@@ -3,10 +3,10 @@ import { describe, expect, it } from 'vitest'
 import { renderRoute } from '@/test/renderRoute'
 
 describe('routing', () => {
-  it('renders the home page at /', async () => {
+  it('renders the terminal at /', async () => {
     renderRoute('/')
 
-    expect(await screen.findByRole('heading', { level: 1, name: 'Dashboard' })).toBeInTheDocument()
+    expect(await screen.findByRole('heading', { level: 1, name: 'Markets' })).toBeInTheDocument()
   })
 
   it('renders a 404 page for unknown routes and links back home', async () => {
@@ -17,7 +17,7 @@ describe('routing', () => {
     await user.click(screen.getByRole('link', { name: 'Go back home' }))
 
     expect(router.state.location.pathname).toBe('/')
-    expect(await screen.findByRole('heading', { name: 'Dashboard' })).toBeInTheDocument()
+    expect(await screen.findByRole('heading', { name: 'Markets' })).toBeInTheDocument()
   })
 
   it('provides a skip link to the main content', async () => {
