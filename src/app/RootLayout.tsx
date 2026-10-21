@@ -8,7 +8,7 @@ export function RootLayout() {
       </a>
       <header className="layout__header">
         <Link to="/" className="layout__brand">
-          Portfolio Dashboard
+          Market Terminal
         </Link>
       </header>
       <main id="main" className="layout__main" tabIndex={-1}>

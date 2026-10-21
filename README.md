@@ -1,8 +1,10 @@
-# Portfolio Dashboard
+# Market Terminal
 
-A data dashboard built with React and TypeScript, with an emphasis on production-grade engineering: strict typing, tested behaviour, accessibility and a CI pipeline that enforces all of it.
+A real-time market data terminal built with React and TypeScript, in the style of a trading-desk front end: live prices, an order book, candlestick charts, FX rates and news.
 
-> 🚧 Work in progress. The foundation is in place; features are being added.
+The focus is production-grade engineering: high-frequency streaming data, exact decimal arithmetic for money, resilient connectivity, accessibility, and a CI pipeline that enforces it all.
+
+> 🚧 Work in progress. See [the project plan](docs/PLAN.md) for the architecture and milestones.
 
 ## Tech stack
 
@@ -12,6 +14,8 @@ A data dashboard built with React and TypeScript, with an emphasis on production
 | UI              | React 19, TypeScript (strict)                                                |
 | Routing         | [React Router](https://reactrouter.com)                                      |
 | Server state    | [TanStack Query](https://tanstack.com/query)                                 |
+| Decimal maths   | [big.js](https://mikemcl.github.io/big.js/)                                  |
+| Validation      | [Zod](https://zod.dev)                                                       |
 | Unit / UI tests | [Vitest](https://vitest.dev), [Testing Library](https://testing-library.com) |
 | API mocking     | [MSW](https://mswjs.io)                                                      |
 | E2E tests       | [Playwright](https://playwright.dev)                                         |
