@@ -100,6 +100,7 @@ button {
 
 .layout__header {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
   gap: var(--space-4);
@@ -117,14 +118,46 @@ button {
   text-decoration: none;
 }
 
-.layout__badge {
-  padding: 0 var(--space-2);
+.layout__controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-end;
+  gap: var(--space-4);
+}
+
+.feed-switch {
+  display: flex;
+  margin: 0;
+  padding: 2px;
   border: 1px solid var(--color-border);
   border-radius: 999px;
-  font-size: 0.7rem;
+  font-size: 0.8125rem;
+}
+
+.feed-switch__option {
+  padding: 0.125rem var(--space-3);
+  border-radius: 999px;
+  color: var(--color-text-muted);
+  cursor: pointer;
+}
+
+.feed-switch__option--active {
+  background: var(--color-surface-raised);
+  color: var(--color-text);
   font-weight: 500;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
+}
+
+.feed-switch__option:has(:focus-visible) {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 1px;
+}
+
+.layout__footer {
+  max-width: 80rem;
+  margin: 0 auto;
+  padding: 0 var(--space-6) var(--space-6);
+  font-size: 0.75rem;
   color: var(--color-text-muted);
 }
 
@@ -142,7 +175,8 @@ button {
 
 @media (max-width: 40rem) {
   .layout__header,
-  .layout__main {
+  .layout__main,
+  .layout__footer {
     padding-inline: var(--space-4);
   }
 }

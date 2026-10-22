@@ -1,10 +1,16 @@
 import { expect, test } from '@playwright/test'
 
-test('streams live prices from the simulated feed', async ({ page }) => {
+// Run against the simulator: deterministic, and independent of Coinbase being reachable.
+test.beforeEach(async ({ page }) => {
+  await page.addInitScript(() => localStorage.setItem('market-terminal:feed', 'demo'))
+})
+
+test('streams prices from the simulated feed', async ({ page }) => {
   await page.goto('/')
 
   await expect(page).toHaveTitle('Market Terminal')
   await expect(page.getByRole('status')).toHaveText('Market data: Live')
+  await expect(page.getByRole('radio', { name: 'Simulated' })).toBeChecked()
 
   const btcPrice = page
     .getByRole('row', { name: /BTC\/USD/ })
@@ -32,6 +38,18 @@ test('a shared link restores the view', async ({ page }) => {
     'aria-sort',
     'descending',
   )
+})
+
+test('switching feed keeps working and is remembered', async ({ page }) => {
+  await page.goto('/')
+  await page.getByText('Live', { exact: true }).first().click()
+  await expect(page.getByRole('radio', { name: 'Live' })).toBeChecked()
+  await expect(page.getByText(/Coinbase Advanced Trade/)).toBeVisible()
+
+  await page.getByText('Simulated', { exact: true }).click()
+  await page.reload()
+  await expect(page.getByRole('radio', { name: 'Simulated' })).toBeChecked()
+  await expect(page.getByRole('status')).toHaveText('Market data: Live')
 })
 
 test('unknown routes show the 404 page', async ({ page }) => {

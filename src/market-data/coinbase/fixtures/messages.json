@@ -1,0 +1,224 @@
+{
+  "subscriptions": {
+    "channel": "subscriptions",
+    "timestamp": "2026-10-22T06:12:05.392728813Z",
+    "sequence_num": 8,
+    "events": [
+      {
+        "subscriptions": {
+          "heartbeats": ["heartbeats"],
+          "level2": ["DOGE-USD"],
+          "market_trades": ["BTC-USD"],
+          "ticker": ["BTC-USD", "DOGE-USD"]
+        }
+      }
+    ]
+  },
+  "tickerSnapshot": {
+    "channel": "ticker",
+    "timestamp": "2026-10-22T06:12:05.349853029Z",
+    "sequence_num": 1,
+    "events": [
+      {
+        "type": "snapshot",
+        "tickers": [
+          {
+            "type": "ticker",
+            "product_id": "BTC-USD",
+            "price": "82711.18",
+            "volume_24_h": "8382.53959552",
+            "low_24_h": "82550.82",
+            "high_24_h": "84856.07",
+            "low_52_w": "57717.55",
+            "high_52_w": "116410.06",
+            "price_percent_chg_24_h": "0.13906188556585",
+            "best_bid": "82711.17",
+            "best_ask": "82711.18",
+            "best_bid_quantity": "0.00609021",
+            "best_ask_quantity": "0.39392413"
+          }
+        ]
+      }
+    ]
+  },
+  "tickerUpdate": {
+    "channel": "ticker",
+    "timestamp": "2026-10-22T06:12:05.506655394Z",
+    "sequence_num": 13,
+    "events": [
+      {
+        "type": "update",
+        "tickers": [
+          {
+            "type": "ticker",
+            "product_id": "DOGE-USD",
+            "price": "0.07978",
+            "volume_24_h": "80630882.3",
+            "low_24_h": "0.07955",
+            "high_24_h": "0.08374",
+            "low_52_w": "0.06762",
+            "high_52_w": "0.20957",
+            "price_percent_chg_24_h": "-1.96608503317768",
+            "best_bid": "0.07977",
+            "best_ask": "0.0798",
+            "best_bid_quantity": "51821",
+            "best_ask_quantity": "15911.3"
+          }
+        ]
+      }
+    ]
+  },
+  "tradesSnapshot": {
+    "channel": "market_trades",
+    "timestamp": "2026-10-22T06:12:05.350057006Z",
+    "sequence_num": 4,
+    "events": [
+      {
+        "type": "snapshot",
+        "trades": [
+          {
+            "product_id": "BTC-USD",
+            "trade_id": "1109199589",
+            "price": "82711.17",
+            "size": "0.0000003",
+            "time": "2026-10-22T06:12:05.268367Z",
+            "side": "BUY"
+          },
+          {
+            "product_id": "BTC-USD",
+            "trade_id": "1109199588",
+            "price": "82711.18",
+            "size": "0.00114711",
+            "time": "2026-10-22T06:12:05.01834Z",
+            "side": "SELL"
+          },
+          {
+            "product_id": "BTC-USD",
+            "trade_id": "1109199587",
+            "price": "82711.18",
+            "size": "0.00117528",
+            "time": "2026-10-22T06:12:04.933197Z",
+            "side": "SELL"
+          }
+        ]
+      }
+    ]
+  },
+  "tradesUpdate": {
+    "channel": "market_trades",
+    "timestamp": "2026-10-22T06:12:05.69300982Z",
+    "sequence_num": 16,
+    "events": [
+      {
+        "type": "update",
+        "trades": [
+          {
+            "product_id": "BTC-USD",
+            "trade_id": "1109199590",
+            "price": "82711.17",
+            "size": "0.00000008",
+            "time": "2026-10-22T06:12:05.61482Z",
+            "side": "BUY"
+          }
+        ]
+      }
+    ]
+  },
+  "level2Snapshot": {
+    "channel": "l2_data",
+    "timestamp": "2026-10-22T06:12:05.388378311Z",
+    "sequence_num": 6,
+    "events": [
+      {
+        "type": "snapshot",
+        "product_id": "DOGE-USD",
+        "updates": [
+          {
+            "side": "bid",
+            "event_time": "2026-10-22T06:12:05.310292Z",
+            "price_level": "0.07977",
+            "new_quantity": "51821"
+          },
+          {
+            "side": "bid",
+            "event_time": "2026-10-22T06:12:05.310292Z",
+            "price_level": "0.07976",
+            "new_quantity": "104288.2"
+          },
+          {
+            "side": "bid",
+            "event_time": "2026-10-22T06:12:05.310292Z",
+            "price_level": "0.0797",
+            "new_quantity": "246387"
+          },
+          {
+            "side": "offer",
+            "event_time": "2026-10-22T06:12:05.310292Z",
+            "price_level": "0.0798",
+            "new_quantity": "22064.1"
+          },
+          {
+            "side": "offer",
+            "event_time": "2026-10-22T06:12:05.310292Z",
+            "price_level": "0.07981",
+            "new_quantity": "14110"
+          }
+        ]
+      }
+    ]
+  },
+  "level2Update": {
+    "channel": "l2_data",
+    "timestamp": "2026-10-22T06:12:05.392536812Z",
+    "sequence_num": 7,
+    "events": [
+      {
+        "type": "update",
+        "product_id": "DOGE-USD",
+        "updates": [
+          {
+            "side": "bid",
+            "event_time": "2026-10-22T06:12:05.328602Z",
+            "price_level": "0.07976",
+            "new_quantity": "98139.9"
+          },
+          {
+            "side": "bid",
+            "event_time": "2026-10-22T06:12:05.328602Z",
+            "price_level": "0.07975",
+            "new_quantity": "68416.6"
+          },
+          {
+            "side": "bid",
+            "event_time": "2026-10-22T06:12:05.328602Z",
+            "price_level": "0.07974",
+            "new_quantity": "124846.9"
+          },
+          {
+            "side": "bid",
+            "event_time": "2026-10-22T06:12:05.328602Z",
+            "price_level": "0.0796",
+            "new_quantity": "22634.7"
+          },
+          {
+            "side": "offer",
+            "event_time": "2026-10-22T06:12:05.328602Z",
+            "price_level": "0.0798",
+            "new_quantity": "15411.3"
+          }
+        ]
+      }
+    ]
+  },
+  "heartbeat": {
+    "channel": "heartbeats",
+    "timestamp": "2026-10-22T06:12:06.074685972Z",
+    "sequence_num": 25,
+    "events": [
+      {
+        "current_time": "2026-10-22 06:12:06.073784081 +0000 UTC m=+107128.283728757",
+        "heartbeat_counter": 107128
+      }
+    ]
+  }
+}

@@ -5,6 +5,7 @@ import {
   compareDecimals,
   countIncrements,
   decimalPlaces,
+  divideDecimals,
   isZero,
   multiplyDecimals,
   parseDecimal,
@@ -49,6 +50,12 @@ describe('arithmetic', () => {
   it('is exact where floating point is not', () => {
     expect(0.1 + 0.2).not.toBe(0.3)
     expect(addDecimals(d('0.1'), d('0.2'))).toBe('0.3')
+  })
+
+  it('divides to 20 places and rejects division by zero', () => {
+    expect(divideDecimals(d('1'), d('4'))).toBe('0.25')
+    expect(divideDecimals(d('2'), d('3'))).toBe('0.66666666666666666667')
+    expect(() => divideDecimals(d('1'), d('0.00'))).toThrow(InvalidValueError)
   })
 
   it('subtracts and multiplies exactly', () => {

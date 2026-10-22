@@ -10,6 +10,7 @@ export {
   compareDecimals,
   countIncrements,
   decimalPlaces,
+  divideDecimals,
   isDecimalString,
   isZero,
   multiplyDecimals,

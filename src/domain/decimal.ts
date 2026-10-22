@@ -82,6 +82,16 @@ export function multiplyDecimals(a: DecimalString, b: DecimalString): DecimalStr
   return fromBig(toBig(a).times(b))
 }
 
+/**
+ * Divides to 20 decimal places (banker's rounding); round the result to the
+ * precision you need. Throws on division by zero.
+ */
+export function divideDecimals(a: DecimalString, b: DecimalString): DecimalString {
+  const divisor = toBig(b)
+  if (divisor.eq(0)) throw new InvalidValueError('divisor (must be non-zero)', b)
+  return fromBig(toBig(a).div(divisor))
+}
+
 export function roundToDecimalPlaces(
   value: DecimalString,
   places: number,

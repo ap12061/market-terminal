@@ -1,6 +1,12 @@
 import { Link, Outlet } from 'react-router'
 import { ConnectionIndicator } from '@/features/connection-status'
 import { useMarketData } from '@/market-data'
+import { FeedSwitch } from './FeedSwitch'
+
+const ATTRIBUTION: Record<string, string> = {
+  coinbase: 'Market data: Coinbase Advanced Trade public feed. Not investment advice.',
+  simulated: 'Market data: simulated by a seeded random model. Prices are not real.',
+}
 
 export function RootLayout() {
   const { sourceId } = useMarketData()
@@ -13,13 +19,16 @@ export function RootLayout() {
       <header className="layout__header">
         <Link to="/" className="layout__brand">
           Market Terminal
-          {sourceId === 'simulated' && <span className="layout__badge">Simulated data</span>}
         </Link>
-        <ConnectionIndicator />
+        <div className="layout__controls">
+          <FeedSwitch />
+          <ConnectionIndicator />
+        </div>
       </header>
       <main id="main" className="layout__main" tabIndex={-1}>
         <Outlet />
       </main>
+      <footer className="layout__footer">{ATTRIBUTION[sourceId]}</footer>
     </div>
   )
 }

@@ -51,3 +51,10 @@ export {
   useTickerSelector,
 } from './react/hooks'
 export { useStoreSelector, useStoreValue, useStoreVersion } from './react/storeHooks'
+export { COINBASE_INSTRUMENTS } from './coinbase/instruments'
+export {
+  COINBASE_WS_URL,
+  createCoinbaseSource,
+  type CoinbaseSourceOptions,
+  type WebSocketLike,
+} from './coinbase/coinbaseSource'
